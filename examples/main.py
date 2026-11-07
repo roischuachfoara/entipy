@@ -4,10 +4,10 @@ import os
 dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.dirname(dir))
 
-from entipy import entity, component, manager, system, components, systems
+from entipy import entity, component, scene, system, components, systems
 
 def main():
-    m = manager.Manager()
+    m = scene.Scene()
     for i in range (0,100):
         id = i + 1
         sid = 'obj ' + str(id)

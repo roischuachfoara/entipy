@@ -16,7 +16,7 @@ from __future__ import absolute_import, division, print_function
 from .__version__ import __version__
 
 # allow lazy loading
-from .pattern import component, entity, manager, system
+from .pattern import component, entity, scene, system
 from .components import component_name, component_counter
 from .systems import system_increment
 from .utilities import utilities

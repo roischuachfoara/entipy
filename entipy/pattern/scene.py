@@ -2,7 +2,7 @@ from .entity import Entity
 from .component import Component
 from .system import System
 
-class Manager:
+class Scene:
     def __init__(self) -> None:
         self.m_EC : dict[Entity, list[Component]] = {}
         self.m_Systems : list[System] = []
