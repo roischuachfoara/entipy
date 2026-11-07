@@ -4,5 +4,5 @@ from .component import Component
 
 class System(ABC):
     @abstractmethod
-    def update(self, entity : Entity,  components : list[Component]):
+    def update(self, scene : dict[Entity, list[Component]]):
         pass 

@@ -43,7 +43,8 @@ def main():
     m = scene.Scene()
 
     #add entities
-    for i in range (0,100):
+    entitiesCount = 10
+    for i in range (0,entitiesCount):
         id = i + 1
         sid = 'obj ' + str(id)
         e = entity.Entity(id)
@@ -54,48 +55,24 @@ def main():
         m.add_component(e, components.component_counter.ComponentCounter())
     
     # add systems
-    m.add_system(systems.system_increment.SystemIncrement())
-
-    counter = 0
+    m.add_system(systems.system_inctement_ui.SystemIncrementUI())
 
     # Main loop
     while not glfw.window_should_close(window):
         glfw.poll_events()
 
-        # clear OpenGL framebuffer
         gl.glClearColor(0.12, 0.12, 0.15, 1.0)
         gl.glClear(gl.GL_COLOR_BUFFER_BIT)
 
-        # update systems
-        m.update_systems()
-
-        # start ImGui frame
         renderer.new_frame()
         imgui.new_frame()
 
-        # build ui
-        imgui.set_next_window_size(
-            (400, 250),
-            imgui.Cond.FIRST_USE_EVER
-        )
+        # Update systems
+        m.update_systems()
 
-        imgui.begin("TBD")
-
-        imgui.text("EXAMPLE TEXT")
-        imgui.separator()
-
-        if imgui.button("Click me!"):
-            counter += 1
-
-        imgui.text(f"Button clicked: {counter} times")
-
-        imgui.end()
-
-        # Render UI
         imgui.render()
         renderer.render(imgui.get_draw_data())
 
-        # Present frame
         glfw.swap_buffers(window)
 
     # Cleanup
@@ -104,7 +81,6 @@ def main():
 
     glfw.destroy_window(window)
     glfw.terminate()
-
 
 if __name__ == "__main__":
     main()

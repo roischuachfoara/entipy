@@ -46,6 +46,5 @@ class Scene:
         raise NotImplementedError('Not implemented yet.')
 
     def update_systems(self):
-        for e in self.m_EC:
-            for s in self.m_Systems:
-                s.update(e, self.m_EC[e])
+        for s in self.m_Systems:
+            s.update(self.m_EC)
