@@ -7,12 +7,13 @@ sys.path.append(os.path.dirname(dir))
 from entipy import entity, component, scene, system, components, systems
 
 def main():
+    # create scene
     m = scene.Scene()
+
+    #add entities
     for i in range (0,100):
         id = i + 1
         sid = 'obj ' + str(id)
-
-        # create entity
         e = entity.Entity(id)
         m.add_entity(e)
 
@@ -23,9 +24,9 @@ def main():
     # add systems
     m.add_system(systems.system_increment.SystemIncrement())
     
+    #main loop
     while(True):
-        m.update_entities()
-
+        m.update_systems()
 
 if __name__ == "__main__":
     main()
