@@ -4,16 +4,18 @@ from ..pattern.entity import Entity
 from ..pattern.component import Component
 from ..pattern.system import System
 from ..components.component_name import ComponentName
-from ..components.component_counter import ComponentCounter
+from ..components.component_filepath import ComponentFilepath
 from ..utilities.utilities import Utilities
 
-class SystemIncrementUI(System):
+class SystemUISetFilepath(System):
+    __filepath : str = ''
+
     def update(self, scene : dict[Entity, list[Component]]):
         for entity, components in scene.items():
             componentName = Utilities.try_get_component(components, ComponentName)
-            componentCounter = Utilities.try_get_component(components, ComponentCounter)
+            componentFilepath = Utilities.try_get_component(components, ComponentFilepath)
 
-            if componentCounter is not None and componentName is not None:
+            if componentFilepath is not None and componentName is not None:
                 imgui.set_next_window_size(
                     (400, 250),
                     imgui.Cond.FIRST_USE_EVER
@@ -22,9 +24,13 @@ class SystemIncrementUI(System):
                 imgui.begin(componentName.name)
 
                 imgui.separator()
+                imgui.text("Filepath:")
 
-                if imgui.button("Click to increment"):
-                    componentCounter.cnt += 1
+                clicked, txt = imgui.input_text( label=' ', text=self.__filepath, flags=imgui.InputTextFlags.NONE)
+                if clicked:
+                    self.__filepath = txt
+                if imgui.button("load"):
+                    #TODO VALIDATE FILEPATH
+                    componentFilepath.filepath = ''    
                 
-                imgui.text(f'{componentCounter.cnt}')
                 imgui.end()

@@ -17,6 +17,6 @@ from .__version__ import __version__
 
 # allow lazy loading
 from .pattern import component, entity, scene, system
-from .components import component_name, component_counter
-from .systems import system_inctement_ui
+from .components import component_name, component_counter, component_filepath
+from .systems import system_ui_inctement, system_ui_set_filepath
 from .utilities import utilities

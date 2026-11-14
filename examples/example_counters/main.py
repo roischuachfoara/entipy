@@ -9,6 +9,7 @@ import os
 
 dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.dirname(dir))
+sys.path.append(os.path.join(os.path.dirname(dir),'..'))
 
 from entipy import entity, component, scene, system, components, systems
 
@@ -55,7 +56,7 @@ def main():
         m.add_component(e, components.component_counter.ComponentCounter())
     
     # add systems
-    m.add_system(systems.system_inctement_ui.SystemIncrementUI())
+    m.add_system(systems.system_ui_inctement.SystemUIIncrement())
 
     # Main loop
     while not glfw.window_should_close(window):

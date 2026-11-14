@@ -1,6 +1,7 @@
 # entipy
 A small system entity component pattern for Python
 
+Prerequisites
 Python 3.13
 
 ```
