@@ -4,11 +4,13 @@ import numpy as np
 
 @dataclass
 class ComponentMesh(Component):
-    vertices : np.ndarray
-    triangles : np.ndarray
-    normals : np.ndarray
+    vertices : np.ndarray = None
+    indices : np.ndarray = None
+    normals : np.ndarray = None
+    uvs : np.ndarray = None
 
-    def __init__(self, vertices : np.ndarray, triangles : np.ndarray, normals : np.ndarray):
+    def __init__(self, vertices : np.ndarray = None, indices : np.ndarray = None, normals : np.ndarray = None, uvs : np.ndarray = None):
         self.vertices = vertices
-        self.triangles = triangles
+        self.indices = indices
         self.normals = normals
+        self.uvs = uvs

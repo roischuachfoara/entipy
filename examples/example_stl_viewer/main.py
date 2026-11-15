@@ -105,11 +105,12 @@ def main():
 
     #add entities
     id = 0
-    sid = f'loader {id}'
+    sid = f'STL {id}'
     e = entity.Entity(id)
     m.add_entity(e)
     m.add_component(e, components.component_name.ComponentName(sid))
     m.add_component(e, components.component_filepath.ComponentFilepath())
+    m.add_component(e, components.component_mesh.ComponentMesh())
     
     # add systems
     m.add_system(systems.system_ui_load_stl.SystemUILoadSTL())

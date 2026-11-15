@@ -5,5 +5,5 @@ Prerequisites
 - Python 3.13
 
 ```
-pip install slimgui glfw PyOpenGL numpy
+pip install slimgui glfw PyOpenGL numpy numpy-stl
 ```
