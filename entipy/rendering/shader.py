@@ -1,4 +1,5 @@
 import OpenGL.GL as gl
+import numpy as np
 
 class Shader:
     @staticmethod
@@ -59,3 +60,16 @@ class Shader:
 
     def destroy(self):
         gl.glDeleteProgram(self.program)
+
+    def get_uniform_location(self, name):
+        return gl.glGetUniformLocation(self.program, name)
+
+    def set_mat4(self, name, matrix):
+        location = self.get_uniform_location(name)
+
+        gl.glUniformMatrix4fv(
+            location,
+            1,
+            gl.GL_TRUE,
+            np.asarray(matrix, dtype=np.float32)
+        )
