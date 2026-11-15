@@ -111,17 +111,18 @@ def main():
     m.add_component(e, components.component_name.ComponentName(sid))
     m.add_component(e, components.component_filepath.ComponentFilepath())
     m.add_component(e, components.component_mesh.ComponentMesh())
+    m.add_component(e, components.component_transform.ComponentTransform())
     
     # add systems
     m.add_system(systems.system_ui_load_stl.SystemUILoadSTL())
-    m.add_system(systems.system_render_mesh.SystemRenderMesh())
+    m.add_system(systems.system_shader_mesh.SystemShaderMesh())
 
     # Main loop
     while not glfw.window_should_close(window):
         glfw.poll_events()
 
         gl.glClearColor(0.12, 0.12, 0.15, 1.0)
-        gl.glClear(gl.GL_COLOR_BUFFER_BIT)
+        gl.glClear(gl.GL_COLOR_BUFFER_BIT | gl.GL_DEPTH_BUFFER_BIT)
 
         renderer.new_frame()
         imgui.new_frame()
