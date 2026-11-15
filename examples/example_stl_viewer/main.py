@@ -112,7 +112,8 @@ def main():
     m.add_component(e, components.component_filepath.ComponentFilepath())
     
     # add systems
-    m.add_system(systems.system_ui_set_filepath.SystemUISetFilepath())
+    m.add_system(systems.system_ui_load_stl.SystemUILoadSTL())
+    m.add_system(systems.system_render_mesh.SystemRenderMesh())
 
     # Main loop
     while not glfw.window_should_close(window):

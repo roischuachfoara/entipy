@@ -7,7 +7,7 @@ from ..components.component_name import ComponentName
 from ..components.component_filepath import ComponentFilepath
 from ..utilities.utilities import Utilities
 
-class SystemUISetFilepath(System):
+class SystemUILoadSTL(System):
     __filepath : str = ''
 
     def update(self, scene : dict[Entity, list[Component]]):
