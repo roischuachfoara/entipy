@@ -64,10 +64,21 @@ class Shader:
     def get_uniform_location(self, name):
         return gl.glGetUniformLocation(self.program, name)
 
+    # matrices are row-major numpy arrays (M @ v), hence transpose=GL_TRUE
     def set_mat4(self, name, matrix):
         location = self.get_uniform_location(name)
 
         gl.glUniformMatrix4fv(
+            location,
+            1,
+            gl.GL_TRUE,
+            np.asarray(matrix, dtype=np.float32)
+        )
+
+    def set_mat3(self, name, matrix):
+        location = self.get_uniform_location(name)
+
+        gl.glUniformMatrix3fv(
             location,
             1,
             gl.GL_TRUE,

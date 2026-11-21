@@ -109,7 +109,8 @@ def main():
     e = entity.Entity(id)
     m.add_entity(e)
     m.add_component(e, components.component_name.ComponentName(sid))
-    m.add_component(e, components.component_filepath.ComponentFilepath())
+    teapot = os.path.normpath(os.path.join(dir, '..', '..', 'testdata', 'stl', 'Teapot.stl'))
+    m.add_component(e, components.component_filepath.ComponentFilepath(teapot))
     m.add_component(e, components.component_mesh.ComponentMesh())
     m.add_component(e, components.component_transform.ComponentTransform())
     
@@ -120,6 +121,9 @@ def main():
     # Main loop
     while not glfw.window_should_close(window):
         glfw.poll_events()
+
+        fb_width, fb_height = glfw.get_framebuffer_size(window)
+        gl.glViewport(0, 0, fb_width, fb_height)
 
         gl.glClearColor(0.12, 0.12, 0.15, 1.0)
         gl.glClear(gl.GL_COLOR_BUFFER_BIT | gl.GL_DEPTH_BUFFER_BIT)
